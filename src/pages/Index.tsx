@@ -138,7 +138,7 @@ export default function Index() {
                   }}
                 >
                   <h3>Час с котами</h3>
-                  <span className="price">600 ₽</span>
+                  <span className="price">200 ₽</span>
                 </div>
                 <p style={{ fontSize: "14px", color: "#666" }}>
                   Час в зоне отдыха с нашими котами + напиток на выбор. Лучшая антистресс-терапия в городе.
