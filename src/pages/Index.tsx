@@ -9,9 +9,9 @@ export default function Index() {
       <header className="header">
         <div className="logo">МУРР*КАФЕ</div>
         <nav>
-          <a href="#">Меню</a>
-          <a href="#">О нас</a>
-          <a href="#">Коты</a>
+          <a href="#menu" onClick={(e) => { e.preventDefault(); document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' }); }}>Меню</a>
+          <a href="/about" onClick={(e) => { e.preventDefault(); navigate("/about"); window.scrollTo(0, 0); }}>О нас</a>
+          <a href="/cats" onClick={(e) => { e.preventDefault(); navigate("/cats"); window.scrollTo(0, 0); }}>Коты</a>
           <a href="#">Адреса</a>
         </nav>
         <div style={{ display: "flex", gap: "10px" }}>
@@ -271,7 +271,7 @@ export default function Index() {
               </a>
             </li>
             <li>
-              <a href="#" style={{ color: "inherit", textDecoration: "none" }}>
+              <a href="/about" style={{ color: "inherit", textDecoration: "none" }} onClick={(e) => { e.preventDefault(); navigate("/about"); window.scrollTo(0, 0); }}>
                 О нас
               </a>
             </li>
