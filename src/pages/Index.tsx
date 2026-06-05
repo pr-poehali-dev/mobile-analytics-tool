@@ -266,7 +266,7 @@ export default function Index() {
           <h4>Навигация</h4>
           <ul>
             <li>
-              <a href="#" style={{ color: "inherit", textDecoration: "none" }}>
+              <a href="#menu" style={{ color: "inherit", textDecoration: "none" }} onClick={(e) => { e.preventDefault(); document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' }); }}>
                 Меню
               </a>
             </li>
@@ -276,7 +276,7 @@ export default function Index() {
               </a>
             </li>
             <li>
-              <a href="#" style={{ color: "inherit", textDecoration: "none" }}>
+              <a href="/cats" style={{ color: "inherit", textDecoration: "none" }} onClick={(e) => { e.preventDefault(); navigate("/cats"); window.scrollTo(0, 0); }}>
                 Наши коты
               </a>
             </li>
