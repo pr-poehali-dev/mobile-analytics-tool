@@ -1,7 +1,23 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Index() {
   const navigate = useNavigate();
+  const [bookingOpen, setBookingOpen] = useState(false);
+  const [form, setForm] = useState({ name: "", phone: "", date: "", time: "", guests: "2" });
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSent(true);
+  };
+
+  const handleClose = () => {
+    setBookingOpen(false);
+    setSent(false);
+    setForm({ name: "", phone: "", date: "", time: "", guests: "2" });
+  };
+
   return (
     <>
       <div className="grain-overlay" />
@@ -16,7 +32,7 @@ export default function Index() {
         </nav>
         <div style={{ display: "flex", gap: "10px" }}>
           <button className="btn-cta" style={{ background: "var(--secondary)", color: "white" }} onClick={() => { navigate("/cats"); window.scrollTo(0, 0); }}>Познакомиться с котами</button>
-          <button className="btn-cta">Забронировать</button>
+          <button className="btn-cta" onClick={() => setBookingOpen(true)}>Забронировать</button>
         </div>
       </header>
 
@@ -32,7 +48,7 @@ export default function Index() {
               Уютное кафе с живыми котами в атмосфере 70-х. Приходи выпить кофе, попробовать вкусняшки и пообщаться с нашими усатыми жителями.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-5">
-              <button className="btn-cta" style={{ background: "var(--primary)", color: "white" }}>
+              <button className="btn-cta" style={{ background: "var(--primary)", color: "white" }} onClick={() => setBookingOpen(true)}>
                 Забронировать стол
               </button>
               <button className="btn-cta" style={{ background: "white" }} onClick={() => document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' })}>
@@ -302,6 +318,140 @@ export default function Index() {
           <span>IG / TG / VK</span>
         </div>
       </footer>
+
+      {/* Модальное окно бронирования */}
+      {bookingOpen && (
+        <div
+          style={{
+            position: "fixed", inset: 0, background: "rgba(0,0,0,0.6)",
+            zIndex: 9999, display: "flex", alignItems: "center", justifyContent: "center",
+            padding: "20px",
+          }}
+          onClick={(e) => { if (e.target === e.currentTarget) handleClose(); }}
+        >
+          <div style={{
+            background: "var(--bg)", border: "var(--border)", boxShadow: "var(--shadow)",
+            padding: "40px", maxWidth: "480px", width: "100%", position: "relative",
+          }}>
+            <button
+              onClick={handleClose}
+              style={{
+                position: "absolute", top: "16px", right: "16px",
+                background: "none", border: "none", fontSize: "24px",
+                fontWeight: 800, cursor: "pointer", lineHeight: 1,
+              }}
+            >✕</button>
+
+            {!sent ? (
+              <>
+                <h2 style={{
+                  fontFamily: "'Unbounded', sans-serif", fontSize: "28px",
+                  fontWeight: 800, textTransform: "uppercase", marginBottom: "8px",
+                }}>ЗАБРОНИРОВАТЬ СТОЛ</h2>
+                <p style={{ color: "#666", marginBottom: "30px", fontSize: "14px" }}>
+                  Заполните форму — мы свяжемся для подтверждения
+                </p>
+                <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+                  <div>
+                    <label style={{ fontSize: "12px", fontWeight: 800, textTransform: "uppercase", display: "block", marginBottom: "6px" }}>Ваше имя</label>
+                    <input
+                      required
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      placeholder="Как вас зовут?"
+                      style={{
+                        width: "100%", padding: "12px", border: "var(--border)",
+                        background: "white", fontFamily: "inherit", fontSize: "14px",
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ fontSize: "12px", fontWeight: 800, textTransform: "uppercase", display: "block", marginBottom: "6px" }}>Телефон</label>
+                    <input
+                      required
+                      value={form.phone}
+                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                      placeholder="+7 (___) ___-__-__"
+                      style={{
+                        width: "100%", padding: "12px", border: "var(--border)",
+                        background: "white", fontFamily: "inherit", fontSize: "14px",
+                      }}
+                    />
+                  </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+                    <div>
+                      <label style={{ fontSize: "12px", fontWeight: 800, textTransform: "uppercase", display: "block", marginBottom: "6px" }}>Дата</label>
+                      <input
+                        required
+                        type="date"
+                        value={form.date}
+                        onChange={(e) => setForm({ ...form, date: e.target.value })}
+                        style={{
+                          width: "100%", padding: "12px", border: "var(--border)",
+                          background: "white", fontFamily: "inherit", fontSize: "14px",
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <label style={{ fontSize: "12px", fontWeight: 800, textTransform: "uppercase", display: "block", marginBottom: "6px" }}>Время</label>
+                      <select
+                        value={form.time}
+                        onChange={(e) => setForm({ ...form, time: e.target.value })}
+                        required
+                        style={{
+                          width: "100%", padding: "12px", border: "var(--border)",
+                          background: "white", fontFamily: "inherit", fontSize: "14px",
+                        }}
+                      >
+                        <option value="">Выбрать</option>
+                        {["10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00"].map(t => (
+                          <option key={t} value={t}>{t}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <label style={{ fontSize: "12px", fontWeight: 800, textTransform: "uppercase", display: "block", marginBottom: "6px" }}>Количество гостей</label>
+                    <select
+                      value={form.guests}
+                      onChange={(e) => setForm({ ...form, guests: e.target.value })}
+                      style={{
+                        width: "100%", padding: "12px", border: "var(--border)",
+                        background: "white", fontFamily: "inherit", fontSize: "14px",
+                      }}
+                    >
+                      {["1","2","3","4","5","6","7","8"].map(n => (
+                        <option key={n} value={n}>{n} {n === "1" ? "гость" : n < "5" ? "гостя" : "гостей"}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <button
+                    type="submit"
+                    className="btn-cta"
+                    style={{ background: "var(--primary)", color: "white", width: "100%", padding: "16px", fontSize: "14px", marginTop: "8px" }}
+                  >
+                    Отправить заявку
+                  </button>
+                </form>
+              </>
+            ) : (
+              <div style={{ textAlign: "center", padding: "20px 0" }}>
+                <div style={{ fontSize: "64px", marginBottom: "20px" }}>🐱</div>
+                <h2 style={{
+                  fontFamily: "'Unbounded', sans-serif", fontSize: "24px",
+                  fontWeight: 800, textTransform: "uppercase", marginBottom: "12px",
+                }}>ЗАЯВКА ПРИНЯТА!</h2>
+                <p style={{ color: "#555", lineHeight: 1.6, marginBottom: "30px" }}>
+                  Мы свяжемся с вами в ближайшее время для подтверждения брони. Коты уже ждут!
+                </p>
+                <button className="btn-cta" style={{ background: "var(--dark)", color: "white" }} onClick={handleClose}>
+                  Закрыть
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </>
   );
 }
