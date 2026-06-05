@@ -1,11 +1,63 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+const menuItems = [
+  {
+    tag: "Хит продаж", tagColor: "var(--primary)", tagTextColor: "white",
+    img: "https://cdn.poehali.dev/projects/306582ae-9a0f-45ec-9685-624a3e4f43fd/files/b315ebcc-ada9-4469-a46f-fdfaf5ccdd4e.jpg",
+    name: "Кошачий капучино", price: "300 ₽",
+    short: "Нежный капучино с latte-art в виде мордочки кота. Молоко на выбор — обычное, овсяное или миндальное.",
+    details: "Наш бариста вручную рисует мордочку кота на каждой чашке. Используем свежеобжаренный арабика-бленд. Молоко на выбор: обычное, овсяное или миндальное. Подаётся с маленьким печеньем в форме лапки.",
+    weight: "300 мл", time: "5 мин",
+  },
+  {
+    tag: "Любимое", tagColor: "var(--secondary)", tagTextColor: "white",
+    img: "https://cdn.poehali.dev/projects/306582ae-9a0f-45ec-9685-624a3e4f43fd/files/2de03b9b-427a-4fb7-b752-c80cac814711.jpg",
+    name: "Мурр-пирог", price: "350 ₽",
+    short: "Домашний морковный пирог с кремом. Идеально к чаю и мурлыканью рядом.",
+    details: "Выпекается каждое утро по домашнему рецепту. Морковный бисквит, нежный крем-чиз, грецкий орех. Подаётся тёплым с шариком ванильного мороженого по желанию (+50 ₽).",
+    weight: "150 г", time: "готово",
+  },
+  {
+    tag: "Популярное", tagColor: "var(--accent)", tagTextColor: "var(--dark)",
+    img: "https://cdn.poehali.dev/projects/306582ae-9a0f-45ec-9685-624a3e4f43fd/files/b7a5deba-9cb9-4635-86a4-20158d5e575b.jpg",
+    name: "Час с котами", price: "200 ₽",
+    short: "Час в зоне отдыха с нашими котами + напиток на выбор. Лучшая антистресс-терапия в городе.",
+    details: "60 минут в мягкой зоне с нашими шестью котами. В стоимость входит один напиток на выбор: чай, кофе или какао. Можно принести угощение для котов — продаётся на стойке. Бронь не требуется.",
+    weight: "60 мин", time: "ежедневно",
+  },
+  {
+    tag: "Новинка", tagColor: "#e07b54", tagTextColor: "white",
+    img: "https://cdn.poehali.dev/projects/306582ae-9a0f-45ec-9685-624a3e4f43fd/files/5fce768c-c858-4f6a-bc2c-22796107a0d0.jpg",
+    name: "Рамен «Мяу»", price: "650 ₽",
+    short: "Насыщенный бульон с лапшой, яйцом и нори. Наблюдай, как коты завидуют твоей тарелке.",
+    details: "Бульон варится 8 часов на куриных костях с имбирём и соевым соусом. Пшеничная лапша, яйцо марунэ, нори, зелёный лук и кунжут. Можно добавить курицу или тофу (+100 ₽). Острота — по запросу.",
+    weight: "450 г", time: "15 мин",
+  },
+  {
+    tag: "Сладкое", tagColor: "var(--accent)", tagTextColor: "var(--dark)",
+    img: "https://cdn.poehali.dev/projects/306582ae-9a0f-45ec-9685-624a3e4f43fd/files/3dd0b222-8026-4632-9e27-f8011d28814a.jpg",
+    name: "Чизкейк «Пурр»", price: "350 ₽",
+    short: "Нежный чизкейк с ягодным соусом. Подаётся в компании самого ласкового кота дня.",
+    details: "Классический нью-йоркский чизкейк на песочной основе. Начинка из сливочного сыра, ванили и сметаны. Сверху — домашний соус из свежих ягод. Готовится накануне и настаивается всю ночь.",
+    weight: "180 г", time: "готово",
+  },
+  {
+    tag: "Уютное", tagColor: "var(--secondary)", tagTextColor: "white",
+    img: "https://cdn.poehali.dev/projects/306582ae-9a0f-45ec-9685-624a3e4f43fd/files/fd90aafe-b1ac-41b5-afd7-37601c132165.jpg",
+    name: "Горячее какао", price: "185 ₽",
+    short: "Бельгийский шоколад, маршмеллоу и корица. Идеально, когда кот устраивается у тебя на коленях.",
+    details: "Готовится на цельном молоке с растопленным бельгийским шоколадом 70%. Сверху — облако маршмеллоу и щепотка корицы. Согревает и успокаивает. Идеально подходит к мурлыканью.",
+    weight: "300 мл", time: "5 мин",
+  },
+];
+
 export default function Index() {
   const navigate = useNavigate();
   const [bookingOpen, setBookingOpen] = useState(false);
   const [form, setForm] = useState({ name: "", phone: "", date: "", time: "", guests: "2" });
   const [sent, setSent] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<typeof menuItems[0] | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -91,137 +143,24 @@ export default function Index() {
           </div>
 
           <div className="menu-grid">
-            {/* Item 1 */}
-            <div className="menu-card">
-              <span className="menu-tag">Хит продаж</span>
-              <img
-                src="https://cdn.poehali.dev/projects/306582ae-9a0f-45ec-9685-624a3e4f43fd/files/b315ebcc-ada9-4469-a46f-fdfaf5ccdd4e.jpg"
-                alt="Кофе с котом"
-              />
-              <div className="menu-card-body">
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    marginBottom: "10px",
-                  }}
-                >
-                  <h3>Кошачий капучино</h3>
-                  <span className="price">300 ₽</span>
+            {menuItems.map((item) => (
+              <div
+                key={item.name}
+                className="menu-card"
+                onClick={() => setSelectedItem(item)}
+                style={{ cursor: "pointer" }}
+              >
+                <span className="menu-tag" style={{ background: item.tagColor, color: item.tagTextColor }}>{item.tag}</span>
+                <img src={item.img} alt={item.name} />
+                <div className="menu-card-body">
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+                    <h3>{item.name}</h3>
+                    <span className="price">{item.price}</span>
+                  </div>
+                  <p style={{ fontSize: "14px", color: "#666" }}>{item.short}</p>
                 </div>
-                <p style={{ fontSize: "14px", color: "#666" }}>
-                  Нежный капучино с лatte-art в виде мордочки кота. Молоко на выбор — обычное, овсяное или миндальное.
-                </p>
               </div>
-            </div>
-
-            {/* Item 2 */}
-            <div className="menu-card">
-              <span className="menu-tag" style={{ background: "var(--secondary)" }}>
-                Любимое
-              </span>
-              <img
-                src="https://cdn.poehali.dev/projects/306582ae-9a0f-45ec-9685-624a3e4f43fd/files/2de03b9b-427a-4fb7-b752-c80cac814711.jpg"
-                alt="Мурр-пирог"
-              />
-              <div className="menu-card-body">
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    marginBottom: "10px",
-                  }}
-                >
-                  <h3>Мурр-пирог</h3>
-                  <span className="price">350 ₽</span>
-                </div>
-                <p style={{ fontSize: "14px", color: "#666" }}>Домашний морковный пирог с кремом. Идеально к чаю и мурлыканью рядом.</p>
-              </div>
-            </div>
-
-            {/* Item 3 */}
-            <div className="menu-card">
-              <span className="menu-tag" style={{ background: "var(--accent)", color: "var(--dark)" }}>
-                Популярное
-              </span>
-              <img
-                src="https://cdn.poehali.dev/projects/306582ae-9a0f-45ec-9685-624a3e4f43fd/files/b7a5deba-9cb9-4635-86a4-20158d5e575b.jpg"
-                alt="Коты играют"
-              />
-              <div className="menu-card-body">
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    marginBottom: "10px",
-                  }}
-                >
-                  <h3>Час с котами</h3>
-                  <span className="price">200 ₽</span>
-                </div>
-                <p style={{ fontSize: "14px", color: "#666" }}>
-                  Час в зоне отдыха с нашими котами + напиток на выбор. Лучшая антистресс-терапия в городе.
-                </p>
-              </div>
-            </div>
-
-
-            {/* Item 4 */}
-            <div className="menu-card">
-              <span className="menu-tag" style={{ background: "#e07b54" }}>Новинка</span>
-              <img
-                src="https://cdn.poehali.dev/projects/306582ae-9a0f-45ec-9685-624a3e4f43fd/files/5fce768c-c858-4f6a-bc2c-22796107a0d0.jpg"
-                alt="Кот и рамен"
-              />
-              <div className="menu-card-body">
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
-                  <h3>Рамен «Мяу»</h3>
-                  <span className="price">650 ₽</span>
-                </div>
-                <p style={{ fontSize: "14px", color: "#666" }}>
-                  Насыщенный бульон с лапшой, яйцом и нори. Наблюдай, как коты завидуют твоей тарелке.
-                </p>
-              </div>
-            </div>
-
-            {/* Item 5 */}
-            <div className="menu-card">
-              <span className="menu-tag" style={{ background: "var(--accent)", color: "var(--dark)" }}>Сладкое</span>
-              <img
-                src="https://cdn.poehali.dev/projects/306582ae-9a0f-45ec-9685-624a3e4f43fd/files/3dd0b222-8026-4632-9e27-f8011d28814a.jpg"
-                alt="Чизкейк с котом"
-              />
-              <div className="menu-card-body">
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
-                  <h3>Чизкейк «Пурр»</h3>
-                  <span className="price">350 ₽</span>
-                </div>
-                <p style={{ fontSize: "14px", color: "#666" }}>
-                  Нежный чизкейк с ягодным соусом. Подаётся в компании самого ласкового кота дня.
-                </p>
-              </div>
-            </div>
-
-            {/* Item 6 */}
-            <div className="menu-card">
-              <span className="menu-tag" style={{ background: "var(--secondary)" }}>Уютное</span>
-              <img
-                src="https://cdn.poehali.dev/projects/306582ae-9a0f-45ec-9685-624a3e4f43fd/files/fd90aafe-b1ac-41b5-afd7-37601c132165.jpg"
-                alt="Какао с котом"
-              />
-              <div className="menu-card-body">
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
-                  <h3>Горячее какао</h3>
-                  <span className="price">185 ₽</span>
-                </div>
-                <p style={{ fontSize: "14px", color: "#666" }}>
-                  Бельгийский шоколад, маршмеллоу и корица. Идеально, когда кот устраивается у тебя на коленях.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
 
@@ -318,6 +257,49 @@ export default function Index() {
           <span>IG / TG / VK</span>
         </div>
       </footer>
+
+      {/* Модальное окно товара */}
+      {selectedItem && (
+        <div
+          style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.6)", zIndex: 9999, display: "flex", alignItems: "center", justifyContent: "center", padding: "20px" }}
+          onClick={(e) => { if (e.target === e.currentTarget) setSelectedItem(null); }}
+        >
+          <div style={{ background: "var(--bg)", border: "var(--border)", boxShadow: "var(--shadow)", maxWidth: "520px", width: "100%", position: "relative", overflow: "hidden" }}>
+            <button
+              onClick={() => setSelectedItem(null)}
+              style={{ position: "absolute", top: "16px", right: "16px", background: "white", border: "var(--border)", width: "36px", height: "36px", fontWeight: 800, fontSize: "16px", cursor: "pointer", zIndex: 1 }}
+            >✕</button>
+            <img src={selectedItem.img} alt={selectedItem.name} style={{ width: "100%", height: "260px", objectFit: "cover", borderBottom: "var(--border)" }} />
+            <div style={{ padding: "30px" }}>
+              <span style={{ fontSize: "11px", fontWeight: 800, textTransform: "uppercase", letterSpacing: "2px", background: selectedItem.tagColor, color: selectedItem.tagTextColor, padding: "4px 10px", display: "inline-block", marginBottom: "16px" }}>
+                {selectedItem.tag}
+              </span>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "16px" }}>
+                <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontSize: "22px", fontWeight: 800, textTransform: "uppercase", lineHeight: 1.1 }}>{selectedItem.name}</h2>
+                <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "28px", fontWeight: 700, color: "var(--secondary)", whiteSpace: "nowrap", marginLeft: "16px" }}>{selectedItem.price}</span>
+              </div>
+              <p style={{ fontSize: "15px", color: "#444", lineHeight: 1.7, marginBottom: "20px" }}>{selectedItem.details}</p>
+              <div style={{ display: "flex", gap: "20px", marginBottom: "24px" }}>
+                <div style={{ fontSize: "12px", fontWeight: 800, textTransform: "uppercase", color: "#888" }}>
+                  <span style={{ display: "block", color: "var(--dark)", fontSize: "14px" }}>{selectedItem.weight}</span>
+                  Объём / вес
+                </div>
+                <div style={{ fontSize: "12px", fontWeight: 800, textTransform: "uppercase", color: "#888" }}>
+                  <span style={{ display: "block", color: "var(--dark)", fontSize: "14px" }}>{selectedItem.time}</span>
+                  Время
+                </div>
+              </div>
+              <button
+                className="btn-cta"
+                style={{ background: "var(--primary)", color: "white", width: "100%", padding: "14px" }}
+                onClick={() => { setSelectedItem(null); setBookingOpen(true); }}
+              >
+                Забронировать стол
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Модальное окно бронирования */}
       {bookingOpen && (
