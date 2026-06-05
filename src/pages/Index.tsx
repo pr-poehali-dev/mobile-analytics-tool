@@ -86,7 +86,7 @@ export default function Index() {
                   }}
                 >
                   <h3>Кошачий капучино</h3>
-                  <span className="price">490 ₽</span>
+                  <span className="price">300 ₽</span>
                 </div>
                 <p style={{ fontSize: "14px", color: "#666" }}>
                   Нежный капучино с лatte-art в виде мордочки кота. Молоко на выбор — обычное, овсяное или миндальное.
@@ -175,7 +175,7 @@ export default function Index() {
               <div className="menu-card-body">
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
                   <h3>Чизкейк «Пурр»</h3>
-                  <span className="price">420 ₽</span>
+                  <span className="price">350 ₽</span>
                 </div>
                 <p style={{ fontSize: "14px", color: "#666" }}>
                   Нежный чизкейк с ягодным соусом. Подаётся в компании самого ласкового кота дня.
@@ -193,7 +193,7 @@ export default function Index() {
               <div className="menu-card-body">
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
                   <h3>Горячее какао</h3>
-                  <span className="price">380 ₽</span>
+                  <span className="price">185 ₽</span>
                 </div>
                 <p style={{ fontSize: "14px", color: "#666" }}>
                   Бельгийский шоколад, маршмеллоу и корица. Идеально, когда кот устраивается у тебя на коленях.
