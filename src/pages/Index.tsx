@@ -29,7 +29,7 @@ export default function Index() {
               <button className="btn-cta" style={{ background: "var(--primary)", color: "white" }}>
                 Забронировать стол
               </button>
-              <button className="btn-cta" style={{ background: "white" }}>
+              <button className="btn-cta" style={{ background: "white" }} onClick={() => document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' })}>
                 Смотреть меню
               </button>
             </div>
@@ -56,7 +56,7 @@ export default function Index() {
           </div>
         </div>
 
-        <section className="section-padding">
+        <section id="menu" className="section-padding">
           <div className="section-header">
             <h2 className="section-title">ФАВОРИТЫ КОТОВ</h2>
             <a
