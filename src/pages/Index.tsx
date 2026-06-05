@@ -145,6 +145,61 @@ export default function Index() {
                 </p>
               </div>
             </div>
+
+
+            {/* Item 4 */}
+            <div className="menu-card">
+              <span className="menu-tag" style={{ background: "#e07b54" }}>Новинка</span>
+              <img
+                src="https://cdn.poehali.dev/projects/306582ae-9a0f-45ec-9685-624a3e4f43fd/files/5fce768c-c858-4f6a-bc2c-22796107a0d0.jpg"
+                alt="Кот и рамен"
+              />
+              <div className="menu-card-body">
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+                  <h3>Рамен «Мяу»</h3>
+                  <span className="price">650 ₽</span>
+                </div>
+                <p style={{ fontSize: "14px", color: "#666" }}>
+                  Насыщенный бульон с лапшой, яйцом и нори. Наблюдай, как коты завидуют твоей тарелке.
+                </p>
+              </div>
+            </div>
+
+            {/* Item 5 */}
+            <div className="menu-card">
+              <span className="menu-tag" style={{ background: "var(--accent)", color: "var(--dark)" }}>Сладкое</span>
+              <img
+                src="https://cdn.poehali.dev/projects/306582ae-9a0f-45ec-9685-624a3e4f43fd/files/3dd0b222-8026-4632-9e27-f8011d28814a.jpg"
+                alt="Чизкейк с котом"
+              />
+              <div className="menu-card-body">
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+                  <h3>Чизкейк «Пурр»</h3>
+                  <span className="price">420 ₽</span>
+                </div>
+                <p style={{ fontSize: "14px", color: "#666" }}>
+                  Нежный чизкейк с ягодным соусом. Подаётся в компании самого ласкового кота дня.
+                </p>
+              </div>
+            </div>
+
+            {/* Item 6 */}
+            <div className="menu-card">
+              <span className="menu-tag" style={{ background: "var(--secondary)" }}>Уютное</span>
+              <img
+                src="https://cdn.poehali.dev/projects/306582ae-9a0f-45ec-9685-624a3e4f43fd/files/fd90aafe-b1ac-41b5-afd7-37601c132165.jpg"
+                alt="Какао с котом"
+              />
+              <div className="menu-card-body">
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+                  <h3>Горячее какао</h3>
+                  <span className="price">380 ₽</span>
+                </div>
+                <p style={{ fontSize: "14px", color: "#666" }}>
+                  Бельгийский шоколад, маршмеллоу и корица. Идеально, когда кот устраивается у тебя на коленях.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
