@@ -175,6 +175,16 @@ nav a:hover {
   }
 }
 
+.header-btn-cats {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .header-btn-cats {
+    display: inline-block;
+  }
+}
+
 .btn-cta:hover {
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0 var(--dark);

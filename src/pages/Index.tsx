@@ -83,7 +83,7 @@ export default function Index() {
           <a href="#">Адреса</a>
         </nav>
         <div style={{ display: "flex", gap: "10px" }}>
-          <button className="btn-cta" style={{ background: "var(--secondary)", color: "white" }} onClick={() => { navigate("/cats"); window.scrollTo(0, 0); }}>Познакомиться с котами</button>
+          <button className="btn-cta header-btn-cats" style={{ background: "var(--secondary)", color: "white" }} onClick={() => { navigate("/cats"); window.scrollTo(0, 0); }}>Познакомиться с котами</button>
           <button className="btn-cta" onClick={() => setBookingOpen(true)}>Забронировать</button>
         </div>
       </header>
