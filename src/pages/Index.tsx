@@ -122,7 +122,7 @@ export default function Index() {
                 Любимое
               </span>
               <img
-                src="https://cdn.poehali.dev/projects/306582ae-9a0f-45ec-9685-624a3e4f43fd/files/b7ed1adf-9736-47b0-81f1-344545d18e7b.jpg"
+                src="https://cdn.poehali.dev/projects/306582ae-9a0f-45ec-9685-624a3e4f43fd/files/2de03b9b-427a-4fb7-b752-c80cac814711.jpg"
                 alt="Мурр-пирог"
               />
               <div className="menu-card-body">
