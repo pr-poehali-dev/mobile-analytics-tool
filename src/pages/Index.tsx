@@ -14,7 +14,10 @@ export default function Index() {
           <a href="#">Коты</a>
           <a href="#">Адреса</a>
         </nav>
-        <button className="btn-cta">Забронировать</button>
+        <div style={{ display: "flex", gap: "10px" }}>
+          <button className="btn-cta" style={{ background: "var(--secondary)", color: "white" }} onClick={() => { navigate("/cats"); window.scrollTo(0, 0); }}>Познакомиться с котами</button>
+          <button className="btn-cta">Забронировать</button>
+        </div>
       </header>
 
       <main>
