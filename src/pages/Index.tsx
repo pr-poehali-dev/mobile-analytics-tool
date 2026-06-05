@@ -212,7 +212,7 @@ export default function Index() {
             <p className="vibe-text">
               Мы не просто кафе. Мы — тихое место, где живут коты и всегда пахнет свежим кофе. Диваны в стиле 70-х, ретро музыка и тёплые мурлыки — всё это ждёт тебя. Приходи одному или с друзьями — коты рады всем.
             </p>
-            <button className="btn-cta" style={{ background: "var(--dark)", color: "white", borderColor: "white" }} onClick={() => navigate("/cats")}>
+            <button className="btn-cta" style={{ background: "var(--dark)", color: "white", borderColor: "white" }} onClick={() => { navigate("/cats"); window.scrollTo(0, 0); }}>
               Познакомиться с котами
             </button>
           </div>
