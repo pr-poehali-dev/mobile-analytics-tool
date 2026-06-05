@@ -80,7 +80,7 @@ export default function Index() {
           <a href="#menu" onClick={(e) => { e.preventDefault(); document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' }); }}>Меню</a>
           <a href="/about" onClick={(e) => { e.preventDefault(); navigate("/about"); window.scrollTo(0, 0); }}>О нас</a>
           <a href="/cats" onClick={(e) => { e.preventDefault(); navigate("/cats"); window.scrollTo(0, 0); }}>Коты</a>
-          <a href="#">Адреса</a>
+          <a href="/addresses" onClick={(e) => { e.preventDefault(); navigate("/addresses"); window.scrollTo(0, 0); }}>Адреса</a>
         </nav>
         <div style={{ display: "flex", gap: "10px" }}>
           <button className="btn-cta header-btn-cats" style={{ background: "var(--secondary)", color: "white" }} onClick={() => { navigate("/cats"); window.scrollTo(0, 0); }}>Познакомиться с котами</button>
